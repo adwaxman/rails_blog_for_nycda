@@ -13,8 +13,11 @@ Rails.application.routes.draw do
   get '/users/edit', to: "users#edit"
   get '/users/:id' => "users#show", as: :user
   post '/users' => "users#create"
+  patch 'users/:id', to: 'users#update'
+
 
   get '/search' => 'users#search'
+
 
 
 

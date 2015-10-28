@@ -37,19 +37,38 @@ class UsersController < ApplicationController
     end
 
     def update
+      puts '*********************************'
+      puts params
 
     end
 
     def search
       puts "*********************"
       puts params
-      @user = User.find_by(fname: params[:query])
-      if @user
-        redirect_to user_path @user
-      else
+      # @user = User.find_by(fname: params[:query])
+      # if @user
+      #   redirect_to user_path @user
+      # else
+      #   flash[:alert] = "No user matched your search."
+      #   redirect_to users_path
+      # end
+
+      search_results = User.where(fname: params[:query])
+      puts "*********************** @users"
+      puts search_results
+      if search_results.length == 0
         flash[:alert] = "No user matched your search."
         redirect_to users_path
+      elsif search_results.length == 1
+        redirect_to user_path @users.first
+      else
+        @users = search_results
+        flash[:notice] = "Multiple users matched your search"
       end
+
+    end
+
+    def results
 
     end
 
