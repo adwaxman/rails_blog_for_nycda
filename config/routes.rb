@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'posts/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'login', to: 'sessions#new'
@@ -18,6 +20,9 @@ Rails.application.routes.draw do
 
 
   get '/search' => 'users#search'
+
+
+  get '/posts' => 'posts#index'
 
 
 
