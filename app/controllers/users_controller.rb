@@ -28,7 +28,12 @@ class UsersController < ApplicationController
     end
 
     def edit
-
+      if current_user
+        @user = current_user
+      else
+        flash[:alert] = "You must be logged in to view your profile"
+        redirect_to login_path
+      end
     end
 
     def update
@@ -47,6 +52,9 @@ class UsersController < ApplicationController
       end
 
     end
+
+
+
 
 
 end
