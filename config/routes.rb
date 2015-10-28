@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/users/:id' => "users#show", as: :user
   post '/users' => "users#create"
   patch 'users/:id', to: 'users#update'
+  delete 'users/:id', to: 'users#destroy'
 
 
   get '/search' => 'users#search'

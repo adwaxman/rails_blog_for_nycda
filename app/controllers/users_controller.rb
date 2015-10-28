@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     def create
       puts "******PARARMS"
       puts params
-      @user = User.new(params[:user])
+      @user = User.new(user_params)
         if @user.save
           flash[:notice] = "Your account has been created successfully!"
           redirect_to users_path
@@ -37,9 +37,15 @@ class UsersController < ApplicationController
     end
 
     def update
+
       puts '*********************************'
       puts params
-
+      @user = current_user
+      puts '************* @user ************'
+      puts @user.inspect
+      @user.update(user_params)
+      flash[:notice] = "Your profile was updated"
+      redirect_to user_path @user
     end
 
     def search
@@ -72,8 +78,22 @@ class UsersController < ApplicationController
 
     end
 
+    def destroy
+      @user = current_user
+      if @user.destroy
+        flash[:notice] = "Account was successfully deleted."
+      else
+        flash[:alert] = "There was a problem"
+        redirect_to users_edit_path
+      end
+      session[:user_id] = nil
+      redirect_to root_path
+    end
 
+    private
 
-
+    def user_params
+      params.require(:user).permit(:fname, :lname, :email, :password)
+    end
 
 end
