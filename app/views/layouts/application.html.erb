@@ -28,14 +28,26 @@
           <li><a href="/contact">Contact</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"></a></li>
+          <% if current_user %>
+          <li> <a><%=current_user.email %></a></li>
+          <li><a href="/logout">Logout</a></li>
+          <% else %>
+          <li><a href="/users/new">Sign Up</a></li>
+          <li><a href="/login">Login</a></li>
+          <% end %>
+
 
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 
-  <h1>Hello, world!</h1>
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+<% if flash[:alert] %>
+  <%= flash[:alert] %>
+<% end %>
 
 <%= yield %>
 

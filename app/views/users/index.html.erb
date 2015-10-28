@@ -1,0 +1,15 @@
+<h1>Search for a user</h1>
+
+<%= form_tag("/search", method: "get") do %>
+  <%=label_tag(:query, "Search:") %>
+  <%=text_field_tag(:query) %>
+  <%=submit_tag("Submit") %>
+<% end %>
+
+
+<h1>Users</h1>
+<ul>
+  <% @users.each do |user| %>
+  <li><a href="/users/<%=user.id%>"><%= "#{user.fname}" + " #{user.lname}"%></a></li>
+  <%end%>
+</ul>
