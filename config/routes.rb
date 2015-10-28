@@ -21,8 +21,7 @@ Rails.application.routes.draw do
 
   get '/search' => 'users#search'
 
-
-  get '/posts' => 'posts#index'
+  resources :posts
 
 
 

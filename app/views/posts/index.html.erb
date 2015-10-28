@@ -1,1 +1,16 @@
 <h1>Posts</h1>
+
+<ul>
+  <% @posts.reverse.each do |post| %>
+  <li>
+      <%= post.user.fname + " " + post.user.lname + " said:" %>
+      <br>
+    <a href="#">
+      <%= post.body %>
+    </a>
+    <br>
+    <%= post.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+  </li>
+  <% end %>
+
+</ul>
