@@ -13,7 +13,7 @@
   <a href="<%=@post.id%>/edit">Edit Post</a>
   <%= link_to("Delete Post", post_path(@post.id), method: :delete)%>
 <% elsif current_user %>
-  <a href="#">Comment</a>
+  <%= link_to "Comment", new_comment_path(:post_id => params[:id]) %>
 <% else %>
   <a href="/login">Login to comment</a>
 

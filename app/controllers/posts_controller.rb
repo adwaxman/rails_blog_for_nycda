@@ -26,9 +26,11 @@ class PostsController < ApplicationController
 
     post_id = params[:id]
     @post = Post.find(post_id)
+    @user = @post.user
     body = params[:post][:body]
     @post.update(body: body)
-    redirect_to post_path post_id
+    redirect_to user_path @user
+    # redirect_to post_path post_id
   end
 
   def create
@@ -57,7 +59,7 @@ class PostsController < ApplicationController
       redirect_to user_path @user
     else
       flash[:alert] = "There was a problem."
-      rediret_to post_path @post
+      redirect_to post_path @post
     end
   end
 

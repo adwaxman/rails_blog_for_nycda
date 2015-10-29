@@ -1,0 +1,28 @@
+<h1>Post #<%=@post.id%></h1>
+<p>
+   <%=@post.created_at.strftime("%B %d, %Y at %I:%M %p")  %>
+</p>
+<h4>
+  <%= @post.user.fname + " " + @post.user.lname + ":" %>
+</h4>
+<h3>
+  <%= @post.body %>
+</h3>
+
+
+<h1>Add your comment</h1>
+
+
+<% if current_user == nil %>
+<% else%>
+
+<%= form_for @comment do |f| %>
+  <%= f.label :message %>
+  <br>
+  <%= f.text_area :body %>
+  <br>
+  <%=f.submit :Comment %>
+  <%=f.hidden_field :post_id, :value => @post.id %>
+<% end %>
+
+<% end %>

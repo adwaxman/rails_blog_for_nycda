@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   get '/search' => 'users#search'
 
-  resources :posts
+  resources :posts, :comments
 
 
 
