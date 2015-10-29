@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     def show
       @user = User.find(params[:id])
       @post = Post.new
+      @posts = Post.where(user_id: params[:id]).reverse
 
     end
 
@@ -67,7 +68,7 @@ class UsersController < ApplicationController
         flash[:alert] = "No user matched your search."
         redirect_to users_path
       elsif search_results.length == 1
-        redirect_to user_path @users.first
+        redirect_to user_path search_results.first
       else
         @users = search_results
         flash[:notice] = "Multiple users matched your search"
