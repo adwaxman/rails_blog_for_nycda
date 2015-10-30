@@ -10,6 +10,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    @comments = @post.comments
+    print_children(@comments.first)
 
   end
 
@@ -67,6 +69,14 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:body, :user_id)
+  end
+
+  def print_child_and_children(comment)
+      puts comment.body
+      children = comment.children
+      children.each do |child|
+        print_child_and_children(child)
+      end
   end
 
 end

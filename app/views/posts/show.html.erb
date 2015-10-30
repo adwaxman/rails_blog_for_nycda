@@ -18,3 +18,39 @@
   <a href="/login">Login to comment</a>
 
 <% end %>
+
+<h1>Comments</h1>
+
+<ul>
+  <% @comments.each do |comment| %>
+    <% if comment.parent_id == nil %>
+    <li>
+      <ul>
+        <p>
+           <%=comment.created_at.strftime("%B %d, %Y at %I:%M %p")  %>
+        </p>
+        <h4>
+          <%= comment.user.fname + " " + comment.user.lname + ":" %>
+        </h4>
+        <h3>
+          <%= comment.body %>
+        </h3>
+      </ul>
+    </li>
+    <% end %>
+
+  <% end %>
+
+</ul>
+
+def print_children(comment)
+  if comment.children.first == nil
+    puts comment.body
+  else
+    children = comment.children
+    children.each do |child|
+      puts child.body
+      print_children(child)
+    end
+  end
+end
