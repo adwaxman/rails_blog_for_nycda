@@ -11,7 +11,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = @post.user
     @comments = @post.comments
-    print_children(@comments.first)
+    @toplevels = get_top_level_comments(@post)
+    
 
   end
 
@@ -65,6 +66,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def print_child_and_children(comment)
+      puts comment.body
+      children = comment.children
+      children.each do |child|
+        print_child_and_children(child)
+      end
+  end
+
   private
 
   def post_params
@@ -77,6 +86,10 @@ class PostsController < ApplicationController
       children.each do |child|
         print_child_and_children(child)
       end
+  end
+
+  def get_top_level_comments(post)
+    Comment.where(post_id: post.id, parent_id: nil)
   end
 
 end
