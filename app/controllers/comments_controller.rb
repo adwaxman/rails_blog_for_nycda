@@ -27,11 +27,31 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    comment_id = params[:id]
+    @comment = Comment.find(comment_id)
+    @post = @comment.post
+    body = params[:comment][:body]
+    @comment.update(body: body)
+    redirect_to post_path @post
 
   end
 
   def destroy
-
+    puts "$" * 35
+    puts params
+    @comment = Comment.find(params[:id])
+    @post = @comment.post
+    if @comment.destroy
+      flash[:notice] = "Your comment has been deleted."
+      redirect_to post_path @post
+    else
+      flash[:alert] = "There was a problem"
+      redirect_to post_path @post
+    end
   end
 
 end

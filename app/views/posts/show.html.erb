@@ -59,7 +59,7 @@
         <%= comment.user.fname + " " + comment.user.lname + ", " + comment.created_at.strftime("%B %d, %Y at %I:%M %p") %>
       </p>
       <% if comment.user == current_user %>
-        <a href="<%=comment.id%>/edit">Edit</a>
+        <a href="../comments/<%=comment.id%>/edit">Edit</a>
         <%= link_to("Delete", comment_path(comment.id), method: :delete)%>
         <br>
       <% elsif current_user %>
