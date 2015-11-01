@@ -19,7 +19,11 @@
 
 <% end %>
 
-<h1>Comments</h1>
+<br>
+
+<h4>Comments</h4>
+
+<!-- <h1>Comments</h1>
 
 <ul>
   <% @comments.each do |comment| %>
@@ -41,15 +45,36 @@
 
   <% end %>
 
-</ul>
+</ul> -->
 
 <% @toplevels.each do |toplevel| %>
-<ul>
 
 <% def print_child_and_children(comment) %>
+<br>
   <ul>
     <li>
       <%= comment.body %>
+      <br>
+      <p>
+        <%= comment.user.fname + " " + comment.user.lname + ", " + comment.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+      </p>
+      <% if comment.user == current_user %>
+        <a href="<%=comment.id%>/edit">Edit</a>
+        <%= link_to("Delete", comment_path(comment.id), method: :delete)%>
+        <br>
+      <% elsif current_user %>
+        <a class="reply">Reply</a>
+
+      <% end %>
+      <%= form_for @comment, url: comments_path, :html => {class: "dropdown-reply"} do |f| %>
+        <br>
+        <%= f.text_area :body %>
+        <br>
+        <%=f.submit :Reply %>
+
+        <%=f.hidden_field :post_id, :value => @post.id %>
+        <%= f.hidden_field :parent_id, :value => comment.id %>
+      <% end %>
     </li>
     <% children = comment.children
        children.each do |child|
@@ -59,7 +84,7 @@
 <% end %>
 
 <% print_child_and_children(toplevel) %>
-</ul>
+
 <% end %>
 
 

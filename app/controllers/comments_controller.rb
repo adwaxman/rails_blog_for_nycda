@@ -13,7 +13,8 @@ class CommentsController < ApplicationController
     body = params[:comment][:body]
     user_id = current_user.id
     post_id = params[:comment][:post_id]
-    @comment = Comment.new(user_id: user_id, post_id: post_id, body: body)
+    parent_id = params[:comment][:parent_id]
+    @comment = Comment.new(user_id: user_id, post_id: post_id, body: body, parent_id: parent_id)
     @post = Post.find(post_id)
     if @comment.save
       flash[:notice] = "Your comment was created successfully."
@@ -22,6 +23,14 @@ class CommentsController < ApplicationController
       flash[:alert] = "There was a problem. Please try again"
       redirect_to post_path @post
     end
+
+  end
+
+  def edit
+
+  end
+
+  def destroy
 
   end
 

@@ -12,7 +12,8 @@ class PostsController < ApplicationController
     @user = @post.user
     @comments = @post.comments
     @toplevels = get_top_level_comments(@post)
-    
+    @comment = Comment.new
+
 
   end
 
