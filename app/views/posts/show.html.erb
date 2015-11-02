@@ -101,9 +101,9 @@
 end
 
 def print_children(comment)
+    puts comment
     children = comment.children
     children.each do |child|
-      puts child.body
       print_children(child)
     end
 end -->
