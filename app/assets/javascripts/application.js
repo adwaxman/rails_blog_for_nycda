@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.turbolinks
 //= require_tree .
 
 $(document).ready(function(){
@@ -20,5 +21,5 @@ $(document).ready(function(){
   $('.reply').click(function(){
     $(this).next('.dropdown-reply').toggle();
   });
-  
+
 });
