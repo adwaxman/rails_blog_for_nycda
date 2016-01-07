@@ -61,9 +61,22 @@ font-family: 'Raleway', sans-serif;*/
 }
 
 
+.profile-header {
+  text-align: center;
+}
 
+.profile-posts-section {
+  text-align: center;
+}
 
+.users-index {
+  text-align: center;
+}
 
+.users-index ul {
+  padding: 0;
+  list-style-type: none;
+}
 
 .sign-up-content
 {
@@ -76,4 +89,9 @@ font-family: 'Raleway', sans-serif;*/
   font-family: 'Raleway', sans-serif;
   text-align: center;
   font-size: 68px;
+}
+
+.new-post {
+  height:200px;
+  width: 400px;
 }

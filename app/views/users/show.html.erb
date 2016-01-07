@@ -1,29 +1,49 @@
-<h1><%=@user.fname %></h1>
-<% if current_user == nil %>
-<% elsif @user.id == current_user.id %>
+<div class="profile-header">
+  <h1><%=@user.fname + " " + @user.lname %></h1>
+  <% if @user.id == current_user.id %>
 
-<a href="/users/edit">Edit Your Profile</a>
-
-<%= form_for @post do |f| %>
-  <%= f.label :message %>
+  <a href="/users/edit">Edit Your Profile</a>
   <br>
-  <%= f.text_area :body %>
   <br>
-  <%=f.submit :Post %>
-<% end %>
 
-<% end %>
-
-<h1> <%= @user.fname %>'s Posts</h1>
-<ul>
-<% @posts.each do |post| %>
-  <li>
-    <a href="/posts/<%=post.id%>">
-      <%= post.body %>
-    </a>
+  <%= form_for @post do |f| %>
+    <%= f.label "Create a new post:" %>
     <br>
-    <%= post.created_at.strftime("%B %d, %Y at %I:%M %p") %>
-  </li>
+    <%= f.text_area :body, class: "new-post" %>
+    <br>
+    <%=f.submit :Post %>
+    <% end %>
+
   <% end %>
 
-</ul>
+</div>
+<div class="profile-posts-section">
+  <% if @user.id == current_user.id %>
+    <% if @user.posts.length > 0 %>
+      <h3>My Posts</h3>
+    <% else %>
+      <h4> You don't have any posts. Start bloggin'!</h4>
+    <% end %>
+  <% else %>
+    <% if @user.posts.length > 0 %>
+      <h3> <%= @user.fname %>'s Posts</h3>
+    <% else %>
+      <h4> Looks like <%= @user.fname %> doesn't have any posts.  Tell <%= @user.fname %> to start bloggin'!</h4>
+    <% end %>
+  <% end %>
+</div>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <ul>
+      <% @posts.each do |post| %>
+      <li>
+        <a href="/posts/<%=post.id%>">
+          <%= post.body %>
+        </a>
+        <br>
+        <%= post.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
