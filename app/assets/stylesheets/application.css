@@ -14,10 +14,66 @@
  *= require_self
  */
 
-body {
+/*font-family: 'Lusitana', serif;
+font-family: 'Raleway', sans-serif;*/
+
+
+ body {
+   font-family: 'Lusitana', serif;
+ }
+
+
+
+.home.index {
   background-color: lightgray;
+  background-image: url('/assets/home.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  padding-bottom: 20px;
 }
 
 .dropdown-reply {
   display: none;
+}
+
+.home-wrapper {
+  height: 100%;
+  width: 100%;
+  /*background-image:url('/assets/home.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;*/
+}
+
+.sign-up-wrapper {
+  color: black;
+  text-align: center;
+  background-color: #e5eeff;
+  border-radius: 0px 20px;
+  margin-top: 20px;
+  line-height: 400px;
+  vertical-align:middle;
+  box-shadow: 10px 10px 100px black;
+
+}
+
+
+
+
+
+
+.sign-up-content
+{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 14px;
+}
+
+.home-header{
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  font-size: 68px;
 }
