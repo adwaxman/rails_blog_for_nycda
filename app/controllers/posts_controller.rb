@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  before_action :user?
+
   def index
     @posts = Post.all
   end
@@ -91,6 +94,13 @@ class PostsController < ApplicationController
 
   def get_top_level_comments(post)
     Comment.where(post_id: post.id, parent_id: nil)
+  end
+
+  def user?
+    unless current_user
+      flash[:alert] = "You must be logged in."
+      redirect_to root_path
+    end
   end
 
 end

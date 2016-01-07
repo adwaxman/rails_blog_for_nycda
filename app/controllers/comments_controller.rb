@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :user?
 
   def new
     puts "#" * 30
@@ -51,6 +52,15 @@ class CommentsController < ApplicationController
     else
       flash[:alert] = "There was a problem"
       redirect_to post_path @post
+    end
+  end
+
+  private
+
+  def user?
+    unless current_user
+      flash[:alert] = "You must be logged in."
+      redirect_to root_path
     end
   end
 

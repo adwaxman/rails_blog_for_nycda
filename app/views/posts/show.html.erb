@@ -1,91 +1,87 @@
-<h1>Post #<%=@post.id%></h1>
-<p>
-   <%=@post.created_at.strftime("%B %d, %Y at %I:%M %p")  %>
-</p>
-<h4>
-  <%= @post.user.fname + " " + @post.user.lname + ":" %>
-</h4>
-<h3>
-  <%= simple_format @post.body %>
-</h3>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h1>Post #<%=@post.id%></h1>
 
-<% if @user == current_user %>
-  <a href="<%=@post.id%>/edit">Edit Post</a>
-  <%= link_to("Delete Post", post_path(@post.id), method: :delete)%>
-<% elsif current_user %>
-  <%= link_to "Comment", new_comment_path(:post_id => params[:id]) %>
-<% else %>
-  <a href="/login">Login to comment</a>
+    <h4>
+      <%= @post.user.fname + " " + @post.user.lname %>
+    </h4>
+    <p>
+       <%=@post.created_at.strftime("%B %d, %Y at %I:%M %p")  %>
+    </p>
+    <h4>
+      <%= simple_format @post.body %>
+    </h4>
 
-<% end %>
+    <% if @user == current_user %>
+      <a href="<%=@post.id%>/edit">Edit Post</a>
+      <%= link_to("Delete Post", post_path(@post.id), method: :delete)%>
+    <% elsif current_user %>
+      <%= link_to "Comment", new_comment_path(:post_id => params[:id]) %>
+    <% else %>
+      <a href="/login">Login to comment</a>
+
+    <% end %>
+  </div>
+
+</div>
+
+
 
 <br>
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-2">
+    <h4>Comments</h4>
+    <% if @comments.length == 0 %>
+    <p>
+      <em>There are no comments for this post.</em>
+    </p>
+    <% end %>
 
-<h4>Comments</h4>
+    <% @toplevels.each do |toplevel| %>
 
-<!-- <h1>Comments</h1>
-
-<ul>
-  <% @comments.each do |comment| %>
-    <% if comment.parent_id == nil %>
-    <li>
+    <% def print_child_and_children(comment) %>
+    <br>
       <ul>
-        <p>
-           <%=comment.created_at.strftime("%B %d, %Y at %I:%M %p")  %>
-        </p>
-        <h4>
-          <%= comment.user.fname + " " + comment.user.lname + ":" %>
-        </h4>
-        <h3>
+        <li>
           <%= comment.body %>
-        </h3>
+          <br>
+          <p>
+            - <%= comment.user.fname + " " + comment.user.lname + ", " + comment.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+          </p>
+          <% if comment.user == current_user %>
+            <a href="../comments/<%=comment.id%>/edit">Edit</a>
+            <%= link_to("Delete", comment_path(comment.id), method: :delete)%>
+            <br>
+          <% elsif current_user %>
+            <a class="reply">Reply</a>
+
+          <% end %>
+          <%= form_for @comment, url: comments_path, :html => {class: "dropdown-reply"} do |f| %>
+            <br>
+            <%= f.text_area :body %>
+            <br>
+            <%=f.submit :Reply %>
+
+            <%=f.hidden_field :post_id, :value => @post.id %>
+            <%= f.hidden_field :parent_id, :value => comment.id %>
+          <% end %>
+        </li>
+        <% children = comment.children
+           children.each do |child|
+             print_child_and_children(child) %>
+        <% end %>
       </ul>
-    </li>
     <% end %>
 
-  <% end %>
+    <% print_child_and_children(toplevel) %>
 
-</ul> -->
-
-<% @toplevels.each do |toplevel| %>
-
-<% def print_child_and_children(comment) %>
-<br>
-  <ul>
-    <li>
-      <%= comment.body %>
-      <br>
-      <p>
-        <%= comment.user.fname + " " + comment.user.lname + ", " + comment.created_at.strftime("%B %d, %Y at %I:%M %p") %>
-      </p>
-      <% if comment.user == current_user %>
-        <a href="../comments/<%=comment.id%>/edit">Edit</a>
-        <%= link_to("Delete", comment_path(comment.id), method: :delete)%>
-        <br>
-      <% elsif current_user %>
-        <a class="reply">Reply</a>
-
-      <% end %>
-      <%= form_for @comment, url: comments_path, :html => {class: "dropdown-reply"} do |f| %>
-        <br>
-        <%= f.text_area :body %>
-        <br>
-        <%=f.submit :Reply %>
-
-        <%=f.hidden_field :post_id, :value => @post.id %>
-        <%= f.hidden_field :parent_id, :value => comment.id %>
-      <% end %>
-    </li>
-    <% children = comment.children
-       children.each do |child|
-         print_child_and_children(child) %>
     <% end %>
-  </ul>
-<% end %>
 
-<% print_child_and_children(toplevel) %>
 
-<% end %>
+  </div>
+
+</div>
+
 
 
 <!-- def print_children(comment)

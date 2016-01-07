@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+    before_action :user?
+
     def index
       @users = User.all
     end
@@ -96,6 +98,13 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:fname, :lname, :email, :password)
+    end
+
+    def user?
+      unless current_user
+        flash[:alert] = "You must be logged in."
+        redirect_to root_path
+      end
     end
 
 end

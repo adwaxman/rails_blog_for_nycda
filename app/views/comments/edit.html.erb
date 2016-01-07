@@ -1,9 +1,10 @@
-<h1>Edit your comment</h1>
 
-<%= form_for @comment do |f| %>
-  <%= f.label :message %>
-  <br>
-  <%= f.text_area :body %>
-  <br>
-  <%=f.submit :Update %>
-<% end %>
+<div class="center">
+  <h3>Edit Your Comment</h3>
+  <%= form_for @comment do |f| %>
+    <br>
+    <%= f.text_area :body, class: "new-comment" %>
+    <br>
+    <%=f.submit :Update %>
+  <% end %>
+</div>

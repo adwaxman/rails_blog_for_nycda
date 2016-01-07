@@ -59,7 +59,7 @@ font-family: 'Raleway', sans-serif;*/
 }
 
 
-.profile-header, .posts-header {
+.profile-header, .posts-header, .header, .center {
   text-align: center;
 }
 
@@ -91,5 +91,10 @@ font-family: 'Raleway', sans-serif;*/
 
 .new-post {
   height:200px;
+  width: 400px;
+}
+
+.new-comment {
+  height:100px;
   width: 400px;
 }
