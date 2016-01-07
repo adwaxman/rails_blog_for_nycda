@@ -1,16 +1,22 @@
-<h1>Posts</h1>
-
-<ul>
-  <% @posts.reverse.each do |post| %>
-  <li>
-      <%= post.user.fname + " " + post.user.lname + " said:" %>
-      <br>
-    <a href="posts/<%=post.id%>">
-      <%= post.body %>
-    </a>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h1 class="posts-header">Posts</h1>
     <br>
-    <%= post.created_at.strftime("%B %d, %Y at %I:%M %p") %>
-  </li>
-  <% end %>
 
-</ul>
+    <ul>
+      <% @posts.reverse.each do |post| %>
+      <li>
+        <%= post.user.fname + " " + post.user.lname + " said:" %>
+        <br>
+        <a href="posts/<%=post.id%>">
+          <%= truncate post.body, length: 200 %>
+        </a>
+        <br>
+        <%= post.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+      </li>
+      <br>
+      <% end %>
+
+    </ul>
+  </div>
+</div>

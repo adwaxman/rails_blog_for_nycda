@@ -22,8 +22,6 @@ font-family: 'Raleway', sans-serif;*/
    font-family: 'Lusitana', serif;
  }
 
-
-
 .home.index, .sessions.new {
   background-color: lightgray;
   background-image: url('/assets/home.jpg');
@@ -61,7 +59,7 @@ font-family: 'Raleway', sans-serif;*/
 }
 
 
-.profile-header {
+.profile-header, .posts-header {
   text-align: center;
 }
 

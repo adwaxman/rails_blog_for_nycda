@@ -6,7 +6,7 @@
   <%= @post.user.fname + " " + @post.user.lname + ":" %>
 </h4>
 <h3>
-  <%= @post.body %>
+  <%= simple_format @post.body %>
 </h3>
 
 <% if @user == current_user %>
