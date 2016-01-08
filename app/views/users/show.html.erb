@@ -38,11 +38,12 @@
       <% @posts.each do |post| %>
       <li>
         <a href="/posts/<%=post.id%>">
-          <%= post.body %>
+          <%= truncate post.body, length: 200 %>
         </a>
         <br>
-        <%= post.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+        - <%= post.created_at.strftime("%B %d, %Y at %I:%M %p") %>
       </li>
+      <br>
       <% end %>
     </ul>
   </div>
