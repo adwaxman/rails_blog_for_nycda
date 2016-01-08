@@ -25,7 +25,7 @@ font-family: 'Raleway', sans-serif;*/
 
 .home.index, .sessions.new {
   background-color: lightgray;
-  background-image: image-url('home.jpg');
+  background: image-url('home.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
