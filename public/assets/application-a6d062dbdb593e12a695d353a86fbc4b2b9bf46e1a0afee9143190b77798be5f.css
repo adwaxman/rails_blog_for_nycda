@@ -1,0 +1,102 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
+/*font-family: 'Lusitana', serif;
+font-family: 'Raleway', sans-serif;*/
+
+
+
+ body {
+   font-family: 'Lusitana', serif;
+   background-color: #e5eeff;
+ }
+
+.home.index, .sessions.new {
+  background-color: lightgray;
+  background-image: image-url("home.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  padding-bottom: 20px;
+}
+
+.dropdown-reply {
+  display: none;
+}
+
+.home-wrapper {
+  height: 100%;
+  width: 100%;
+  /*background-image:url('/assets/home.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;*/
+}
+
+.sign-up-wrapper {
+  color: black;
+  text-align: center;
+  background-color: #e5eeff;
+  border-radius: 0px 20px;
+  margin-top: 20px;
+  line-height: 400px;
+  vertical-align:middle;
+  box-shadow: 10px 10px 100px black;
+
+}
+
+
+.profile-header, .posts-header, .header, .center {
+  text-align: center;
+}
+
+.profile-posts-section {
+  text-align: center;
+}
+
+.users-index {
+  text-align: center;
+}
+
+.users-index ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.sign-up-content
+{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 14px;
+}
+
+.home-header{
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  font-size: 68px;
+}
+
+.new-post {
+  height:200px;
+  width: 400px;
+}
+
+.new-comment {
+  height:100px;
+  width: 400px;
+}
