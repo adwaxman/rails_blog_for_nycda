@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    before_action :user?
+    before_action :user?, except: [:new, :create]
 
     def index
       @users = User.all
@@ -23,7 +23,8 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
         if @user.save
           flash[:notice] = "Your account has been created successfully!"
-          redirect_to users_path
+          session[:user_id] = @user.id
+          redirect_to user_path @user
         else
           flash[:alert] = "There was a problem. Please try again."
           redirect_to users_new_path

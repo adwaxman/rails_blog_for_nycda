@@ -23,7 +23,7 @@ font-family: 'Raleway', sans-serif;*/
    background-color: #e5eeff;
  }
 
-.home.index, .sessions.new {
+.home.index, .sessions.new, .users.new {
   background-color: lightgray;
   background-image: url("https://s3-us-west-2.amazonaws.com/awblogpic/home.jpg");
   background-size: cover;
