@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get '/contact' => "home#contact"
 
   get '/users' => "users#index"
-  get '/users/new' => "users#new"
   get '/users/edit', to: "users#edit"
   get '/users/:id' => "users#show", as: :user
   post '/users' => "users#create"
